@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <!-- <placeholder name="header" :rendering="route" /> -->
+  <div>    
+    <!-- <placeholder name="header" :rendering="route" />             -->
     <placeholder name="main" :rendering="route" />
     <!-- <placeholder name="footer" :rendering="route" /> -->
   </div>

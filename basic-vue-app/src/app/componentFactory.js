@@ -5,7 +5,6 @@ const components = new Map();
 components.set('Welcome', Welcome);
 components.set('Banner', Banner);
 
-
 const componentFactory = (componentName) => components.get(componentName);
 
 export default componentFactory;

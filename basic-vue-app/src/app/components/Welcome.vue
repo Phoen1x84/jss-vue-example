@@ -26,21 +26,20 @@ export default {
   props: {
     fields: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     copyright: {
       type: String,
-      default: 'Copyright Sitecore A/S',
-    },
+      default: 'Copyright Sitecore A/S 123'
+    }
   },
   components: {
     ScImage: Image,
     ScText: Text,
-    ScRichText: RichText,
-  },
+    ScRichText: RichText
+  }
 };
 </script>
 
 <style>
-
 </style>

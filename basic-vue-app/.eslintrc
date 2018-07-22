@@ -1,10 +1,7 @@
 {
-  "extends": [
-    "airbnb-base",
-    "prettier",
+  "extends": [        
     "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:prettier/recommended",
+    "plugin:import/warnings",    
     "plugin:vue/recommended"
   ],
   "parserOptions": {
@@ -26,8 +23,7 @@
     "window": true,
     "document": true
   },
-  "rules": {
-    "prettier/prettier": "error",
+  "rules": {    
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": [
       "error",
@@ -35,8 +31,7 @@
         "devDependencies": true,
         "optionalDependencies": true
       }
-    ],
-    "linebreak-style": ["error", "windows"],
+    ],    
     "arrow-body-style": ["warn", "as-needed"],
     "arrow-parens": ["error", "always"],
     "no-unused-vars": [
