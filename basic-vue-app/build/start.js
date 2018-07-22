@@ -115,8 +115,7 @@ const startDisconnectedServer = (manifest) => {
   server.use('/assets', assetMiddleware);
 };
 
-const startServer = () => {
-  return new Promise((resolve, reject) => {
+const startServer = () => new Promise((resolve, reject) => {
     // creates a middleware that returns the root index.html for any request
     // (this enables proper handling of routing if you refresh the page after switching routes)
     const defaultDocumentMiddleware = createDefaultDocumentMiddleware({
@@ -137,7 +136,6 @@ const startServer = () => {
       resolve();
     });
   });
-};
 
 let startPromise;
 

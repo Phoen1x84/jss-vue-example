@@ -1,8 +1,7 @@
 {
   "name": "home",
   "displayName": "Home",
-  "placeholders": {
-    "header": [],
+  "placeholders": {    
     "main": [      
       {
         "componentName": "Welcome",
@@ -36,7 +35,6 @@
           }
         }
       }
-    ],
-    "footer": []
+    ]
   }
 }

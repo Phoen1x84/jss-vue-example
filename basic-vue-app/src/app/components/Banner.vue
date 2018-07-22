@@ -1,5 +1,5 @@
 <template>
-  <div class="banner">
+  <div class="test">
     123
     <sc-text tag="h1" :field="fields.title" class="" />
     <sc-text tag="div" :field="fields.text" class="" />
