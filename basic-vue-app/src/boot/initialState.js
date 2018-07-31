@@ -1,4 +1,4 @@
-const initialState = () => ({
+const initialState = () => ({  
   sitecore: {
     context: {
       pageEditing: false,
@@ -10,5 +10,4 @@ const initialState = () => ({
   },
   viewBag: {},
 });
-
 export default initialState;
