@@ -6,7 +6,7 @@
       {
         "componentName": "Header",
         "placeholders": {
-          "menu": [
+          "phmenu": [
             {
               "componentName": "Menu"
             }
@@ -14,7 +14,7 @@
         }
       }
     ],   
-    "main": [
+    "phmain": [
       {
         "componentName": "Banner",
         "fields": {

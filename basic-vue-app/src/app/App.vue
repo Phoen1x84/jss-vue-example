@@ -1,7 +1,7 @@
 <template>
   <div>    
-    <placeholder name="header" :rendering="route" />
-    <placeholder name="main" :rendering="route" />
+    <placeholder name="phheader" :rendering="route" />
+    <placeholder name="phmain" :rendering="route" />
     <!-- <placeholder name="footer" :rendering="route" /> -->
   </div>
 </template>
