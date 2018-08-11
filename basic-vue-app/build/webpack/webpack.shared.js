@@ -21,7 +21,7 @@ export default function(envVars) {
     production: false, // when true sets node env to prod (production Vue) and enables uglify
     devtool: undefined, // webpack devtool setting (defaults to cheap-source-map if production is true)
     watch: false, // controls webpack watch mode (watch without dev-server)
-    devserver: false, // whether to use webpack-dev-server or not (note: only used by client bundle)
+    devserver: false // whether to use webpack-dev-server or not (note: only used by client bundle)
   };
 
   envVars = Object.assign(defaultEnv, envVars);
@@ -35,23 +35,25 @@ export default function(envVars) {
       [
         'env',
         {
-          modules: false,
-        },
+          modules: false
+        }
       ],
       'stage-0',
-      'vue',
-    ],
+      'vue'
+    ]
   };
 
   return {
     devtool: envVars.devtool
       ? envVars.devtool
-      : envVars.production ? 'cheap-source-map' : undefined,
+      : envVars.production
+        ? 'cheap-source-map'
+        : undefined,
     context: path.resolve(process.cwd(), 'src'),
     output: {
       path: getOutputPath(envVars),
       publicPath: normalizeFrontendPath(envVars.publicPath),
-      filename: '[name].bundle.js',
+      filename: '[name].bundle.js'
     },
     watch: envVars.watch,
     module: {
@@ -66,75 +68,88 @@ export default function(envVars) {
               js: [
                 {
                   loader: 'babel-loader',
-                  options: babelLoaderOptions,
-                },
-              ],
-            },
-          },
+                  options: babelLoaderOptions
+                }
+              ]
+            }
+          }
         },
         // JS/JSX loader
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
-          options: babelLoaderOptions,
+          options: babelLoaderOptions
         },
-        // CSS loader
-        {
+         // CSS loader
+         {
           test: /\.css$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: 'css-loader',
-          }),
+            use: 'css-loader'            
+          })
+        },
+        // SCSS loader
+        {
+          test: /\.scss$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+              'css-loader',
+              'sass-loader'
+            ]
+          })
         },
         // Image loader
         {
           test: /\.(png|jpg|gif)$/,
-          use: 'url-loader?limit=50000&name=img/img-[hash:6].[ext]',
+          use: 'url-loader?limit=50000&name=img/img-[hash:6].[ext]'
         },
         // Font loaders
         {
           test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          use: 'url-loader?limit=10000&mimetype=application/font-woff',
+          use: 'url-loader?limit=10000&mimetype=application/font-woff'
         },
         {
           test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          use: 'file-loader',
+          use: 'file-loader'
         },
         // JSON loader
         {
           test: /\.json$/,
-          use: 'json-loader',
+          use: 'json-loader'
         },
         // GraphQL loader
         {
           test: /\.(graphql|gql)$/,
           exclude: /node_modules/,
-          loader: ['graphql-tag/loader'],
-        },
-      ],
+          loader: ['graphql-tag/loader']
+        }
+      ]
     },
     resolve: {
       symlinks: false,
       modules: [path.resolve(process.cwd(), 'src'), 'node_modules'],
       extensions: ['.js', '.jsx', '.vue'],
       alias: {
-        assets: path.resolve(process.cwd(), 'assets'),
-      },
+        assets: path.resolve(process.cwd(), 'assets')
+      }
     },
     plugins: [
       new ProgressBarPlugin({
-        format: `  build [:bar] ${chalk.green.bold(':percent')} (:elapsed seconds)`,
-        clear: false,
+        format: `  build [:bar] ${chalk.green.bold(
+          ':percent'
+        )} (:elapsed seconds)`,
+        clear: false
       }),
       // extract CSS imports into a css file; [name] is the bundle name (client, server)
       new ExtractTextPlugin({
         filename: '[name].css',
-        allChunks: true,
+        allChunks: true
       }),
       new webpack.DefinePlugin(getGlobalVariables(envVars)),
-      ...extraPlugins,
-    ],
+      ...extraPlugins
+    ]
   };
 }
 
@@ -180,17 +195,17 @@ function getExtraPlugins(envVars) {
             conditionals: true,
             dead_code: true,
             evaluate: true,
-            warnings: false,
+            warnings: false
           },
           mangle: {
             keep_fnames: true,
-            safari10: true,
+            safari10: true
           },
           output: {
             comments: false,
-            ascii_only: true,
-          },
-        },
+            ascii_only: true
+          }
+        }
       })
     );
   }
@@ -208,7 +223,9 @@ function getOutputPath(envVars) {
 
   if (outputPath === 'sitecore') {
     // deploy directly to Sitecore
-    outputPath = path.resolve(jssConfig.sitecore.instancePath + jssConfig.sitecoreDistPath);
+    outputPath = path.resolve(
+      jssConfig.sitecore.instancePath + jssConfig.sitecoreDistPath
+    );
   }
 
   // if neither local nor sitecore, we presume you passed an absolute path, and use that
@@ -222,7 +239,9 @@ function getGlobalVariables(envVars) {
     __SC_API_HOST__: JSON.stringify(jssConfig.sitecore.layoutServiceHost),
     __SC_API_KEY__: JSON.stringify(jssConfig.sitecore.apiKey),
     __TRANSLATION_PATH__: JSON.stringify(jssConfig.translationPath),
-    __BUNDLE_OUTPUT_PATH__: JSON.stringify(normalizeFrontendPath(envVars.publicPath)),
+    __BUNDLE_OUTPUT_PATH__: JSON.stringify(
+      normalizeFrontendPath(envVars.publicPath)
+    )
   };
 
   const nodeEnv = envVars.production ? 'production' : 'development';
@@ -230,11 +249,13 @@ function getGlobalVariables(envVars) {
   // if we're disconnected and running webpack-dev-server, we want content from localhost
   if (envVars.content === 'disconnected' && envVars.devserver) {
     // eslint-disable-next-line no-underscore-dangle
-    globalVars.__SC_API_HOST__ = JSON.stringify(`http://localhost:${jssConfig.devServerPort}`);
+    globalVars.__SC_API_HOST__ = JSON.stringify(
+      `http://localhost:${jssConfig.devServerPort}`
+    );
   }
 
   globalVars['process.env'] = {
-    NODE_ENV: JSON.stringify(nodeEnv),
+    NODE_ENV: JSON.stringify(nodeEnv)
   };
 
   return globalVars;

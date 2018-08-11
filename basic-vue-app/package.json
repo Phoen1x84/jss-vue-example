@@ -47,6 +47,7 @@
   "dependencies": {
     "@sitecore-jss/sitecore-jss-vue": "^8.0.3",
     "eslint-config-airbnb-base": "^12.1.0",
+    "normalize.css": "^8.0.0",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.5.16"
@@ -77,10 +78,12 @@
     "fs-extra": "^5.0.0",
     "js-yaml": "^3.11.0",
     "lodash.merge": "^4.6.1",
+    "node-sass": "^4.9.3",
     "opn": "^5.2.0",
     "prettier": "^1.11.1",
     "progress-bar-webpack-plugin": "^1.11.0",
     "replace-ext": "^1.0.0",
+    "sass-loader": "^7.1.0",
     "style-loader": "^0.20.2",
     "uglifyjs-webpack-plugin": "^1.2.2",
     "url-loader": "^1.0.1",

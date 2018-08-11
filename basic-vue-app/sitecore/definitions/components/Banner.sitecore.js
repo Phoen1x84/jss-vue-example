@@ -9,7 +9,7 @@ export default (manifest) => {
     fields: [
       { name: 'title', type: CommonFieldTypes.SingleLineText },
       { name: 'text', type: CommonFieldTypes.RichText },
-      { name: 'link', type: CommonFieldTypes.GeneralLink },
+      { name: 'link', type: CommonFieldTypes.GeneralLink }
     ],
   });
 };

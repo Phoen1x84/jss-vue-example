@@ -19,13 +19,13 @@
         "componentName": "Banner",
         "fields": {
           "title": {
-            "value": "Banner Title"
+            "value": "Front-End Development / UI & UX"
           },
           "text": {
-            "value": "<p>Some amazing text</p>"
+            "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed libero non turpis sagittis porta.</p>"
           },
-          "link": {
-            "value": "https://google.com"
+          "link": {            
+            "value": ""            
           }
         }
       }

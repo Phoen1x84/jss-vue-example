@@ -8,7 +8,7 @@
 
 <script>
 import { Placeholder } from '@sitecore-jss/sitecore-jss-vue';
-import '../../assets/css/default.css';
+import '../../assets/css/normalize.css';
 
 export default {
   name: 'App',
@@ -24,6 +24,4 @@ export default {
 };
 </script>
 
-<style>
 
-</style>
